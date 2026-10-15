@@ -1,0 +1,4 @@
+interface:
+  display_name: "Anthropic Skill Creator"
+  short_description: "Create and evaluate skills using Anthropic's workflow"
+  default_prompt: "Use $anthropic-skill-creator to create or improve a skill for my workflow."

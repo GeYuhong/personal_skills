@@ -1,0 +1,4 @@
+interface:
+  display_name: "紧凑源码学习笔记"
+  short_description: "沿用 VE CUDA Graph 笔记风格，紧凑讲清源码、机制与调用关系"
+  default_prompt: "使用 $compact-code-notes，参考已有 note.md 的风格，为指定源码撰写或续写中文学习笔记。"
