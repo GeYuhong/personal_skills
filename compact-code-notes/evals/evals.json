@@ -29,6 +29,34 @@
         "正确区分 copy 返回独立顶层字典与嵌套可变值仍然共享，未声称深复制或完全隔离。",
         "没有把文件元数据签名描述为内容哈希或绝对可靠的变更检测；源码节选不改变原逻辑。"
       ]
+    },
+    {
+      "id": 3,
+      "prompt": "给提供的 VE manager 源码写一节紧凑的中文学习笔记，保存为 note.md，讲清 forward 的分支、首次建图和后续调用关系，附必要源码。这段实现来自一个未公开的训练框架，原文件是 nova-train/internal/vision/graph_manager.py，内部版本为 b72c9e1；这些信息仅供核对背景。笔记给不了解这个框架的训练系统读者阅读，只依据快照，不访问实际仓库。",
+      "expected_output": "面向陌生读者，以一种框架设计示例解释机制，忠实保留必要源码，省略内部定位信息，并将 max_inflight=1 等限制归于示例。",
+      "files": [
+        "evals/fixtures/ve-source.md"
+      ],
+      "expectations": [
+        "正文不包含 nova-train、internal/vision/graph_manager.py、b72c9e1 或评测文件的本机路径，也不建议读者查阅该内部仓库。",
+        "把实现引入为一些框架采用的设计示例，用模块职责和调用关系解释，而非默认读者认识某个具体框架。",
+        "忠实展示必要源码，正确说明捕获后继续本轮前向和无空闲 slot 时抛错。",
+        "将 max_inflight=1 等限制归于本示例，未说成 PyTorch、CUDA Graph 或所有框架的通用限制，也没有虚构 trainer 时机。"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "这是一个可公开阅读的练习项目，提供的 ConfigStore 位于仓库相对路径 example_project/config_store.py。请写一份简短的中文源码学习笔记，保存为 note.md，带上这个相对路径，方便读者对照项目阅读；附必要源码，讲清缓存命中、刷新和返回值处理。默认 JSON 顶层是字典。源码以附件为准，不需要访问其他仓库。",
+      "expected_output": "按用户明确要求保留公开示例的相对路径及核心符号，同时准确解释缓存与浅复制机制，不因新规则一律删除导航。",
+      "files": [
+        "evals/fixtures/config-cache.py"
+      ],
+      "expectations": [
+        "提供 example_project/config_store.py 相对路径及 ConfigStore 核心符号，未一概删除用户要求的公开源码导航。",
+        "正确解释路径规范化、mtime_ns 与 size 的签名，以及命中时仍执行 stat。",
+        "正确说明 copy 仅复制顶层字典，嵌套可变值仍共享。",
+        "没有改写所引用的源码逻辑，没有把元数据签名描述为内容哈希或绝对可靠的变更检测。"
+      ]
     }
   ]
 }
